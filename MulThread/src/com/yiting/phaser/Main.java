@@ -22,11 +22,12 @@ public class Main {
 		documentThread.start();
 		
 		try {
-			systemThread.join();
+			System.out.println("0");
+			documentThread.join();
 			System.out.println("1");
 			appsThread.join();
 			System.out.println("2");
-			documentThread.join();
+			systemThread.join();
 			System.out.println("3");
 		} catch (Exception e) {
 			e.printStackTrace();
