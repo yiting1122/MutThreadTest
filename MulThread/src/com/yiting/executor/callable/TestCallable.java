@@ -22,32 +22,30 @@ public class TestCallable {
 			Integer num = random.nextInt(10);
 			FactorialCalculator calculator = new FactorialCalculator(num);
 			Future<Integer> result = executor.submit(calculator);
-			System.out.println("AAAAAAAAAAAA");
 			resultList.add(result);
-			System.out.println("BBBBBBBBBBBB");
 		}
-		do { //主线程自旋等待完成
-			System.out.println("Number of Completed:"
-					+ executor.getCompletedTaskCount());
-			for (int i = 0; i < resultList.size(); i++) {
-				System.out.println("++++++++++++");
-				Future<Integer> ret = resultList.get(i);
-				System.out.println("------------");
-				System.out.println("task:" + i + "  " + ret.isDone());
-			}
-			try {
-				TimeUnit.MILLISECONDS.sleep(50);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		} while (executor.getCompletedTaskCount() < resultList.size());
+//		do { //主线程自旋等待完成
+//			System.out.println("Number of Completed:"
+//					+ executor.getCompletedTaskCount());
+//			for (int i = 0; i < resultList.size(); i++) {
+//				Future<Integer> ret = resultList.get(i);
+//				System.out.println("task:" + i + "  " + ret.isDone());
+//			}
+//			try {
+//				TimeUnit.MILLISECONDS.sleep(50);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//		} while (executor.getCompletedTaskCount() < resultList.size());
 
 		System.out.println("=================result================");
 		for(int i=0;i<resultList.size();i++){
 			Future<Integer> ret=resultList.get(i);
 			Integer number=null;
 			try {
+				System.out.println(ret.isDone());
 				number=ret.get();
+				System.out.println(ret.isDone());
 				System.out.println(i+" result "+number);
 			} catch (Exception e) {
 				e.printStackTrace();
