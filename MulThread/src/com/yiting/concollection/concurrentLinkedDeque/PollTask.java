@@ -12,9 +12,10 @@ public class PollTask implements Runnable{
 	@Override
 	public void run() {
 		for(int i=0;i<5000;i++){
+			
 			list.pollFirst();
 			list.pollLast();
-			System.out.println(list.size());
+			//System.out.println(list.size());
 		}
 	}
 
